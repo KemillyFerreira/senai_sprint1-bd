@@ -33,7 +33,7 @@ SELECT Tipo FROM  TipoHabilidade;
 SELECT Nome AS Habilidades, Tipo AS Tipos  
 FROM  Habilidade AS H
 INNER JOIN TipoHabilidade AS TH
-ON H.idTipoHabilidade = TH.idTipoHabilidade;
+ON H.idHabilidade = TH.idTipoHabilidade;
 
 --Selecionar todos os personagens e suas respectivas classes
 SELECT P.Nome AS Personagem, C.Nome AS Classe

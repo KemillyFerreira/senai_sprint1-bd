@@ -1,3 +1,4 @@
+--DDL
 CREATE DATABASE SENAI_HROADS_MANHA;
 
 USE SENAI_HROADS_MANHA;
@@ -12,7 +13,7 @@ CREATE TABLE Habilidade
 (
 	idHabilidade	INT PRIMARY KEY IDENTITY
 	,Nome			VARCHAR(30)
-	,TipoHabilidade	INT FOREIGN KEY REFERENCES TipoHabilidade (idTipoHabilidade)
+	,idTipoHabilidade	INT FOREIGN KEY REFERENCES TipoHabilidade (idTipoHabilidade)
 );
 
 CREATE TABLE Classe
