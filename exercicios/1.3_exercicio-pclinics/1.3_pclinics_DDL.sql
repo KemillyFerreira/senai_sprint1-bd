@@ -1,3 +1,5 @@
+--DDL
+
 CREATE DATABASE Clinica
 
 USE Clinica
@@ -7,43 +9,57 @@ CREATE TABLE Tipo
 	idTipo	INT PRIMARY KEY IDENTITY
 	,Nome	VARCHAR (150)
 );
+
 CREATE TABLE Raça
 (
 	idRaça	INT PRIMARY KEY IDENTITY
 	,idTipo INT FOREIGN KEY REFERENCES Tipo (idTipo)
 	,Nome	VARCHAR (150)
 );
+
 CREATE TABLE Dono
 (
 	idDono	INT PRIMARY KEY IDENTITY
 	,Nome	VARCHAR (150)
 );
+
 CREATE TABLE Pet
 (
 	idPet			INT PRIMARY KEY IDENTITY
 	,idRaça			INT FOREIGN KEY REFERENCES Raça (idRaça)
 	,idDono			INT FOREIGN KEY REFERENCES Dono (idDono)
 	,Nome			VARCHAR (150)
-	,DataNascimento	VARCHAR (150)
+	,DataNascimento	DATE NOT NULL
 );
+
 CREATE TABLE	Clinica
 (
 	idClinica	INT PRIMARY KEY IDENTITY
 	,Endereço	VARCHAR (250) NOT NULL
 	,Nome		VARCHAR (150) NOT NULL
 );
+
 CREATE TABLE Veterinário
 (
 	idVeterinário	INT PRIMARY KEY IDENTITY
 	,idCinica		INT FOREIGN KEY REFERENCES Clinica (idClinica)
 	,Nome			VARCHAR (150)
 );
+
 CREATE TABLE Atendimento
 (
 	idAtendimento		INT PRIMARY KEY IDENTITY
-	,idClinica			INT FOREIGN KEY REFERENCES Clinica (idClinica)
 	,idVeterinário		INT FOREIGN KEY REFERENCES Veterinário (idVeterinário)
 	,idPet				INT FOREIGN KEY REFERENCES	Pet (idPet)
 	,NomeVeterinário	VARCHAR (150)
 	,NomePet			VARCHAR (150)	
 );
+
+ALTER TABLE Veterinário
+ADD CRMV VARCHAR (150);
+
+ALTER TABLE Veterinário
+ALTER COLUMN CRMV VARCHAR(150) NOT NULL;
+
+ALTER TABLE Veterinário
+ADD IdClinica INT FOREIGN KEY REFERENCES Clinica (idClinica);
