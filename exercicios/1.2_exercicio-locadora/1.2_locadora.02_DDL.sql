@@ -40,12 +40,12 @@ CREATE TABLE Cliente
 
 CREATE TABLE Aluguel
 (
-	idAluguel	INT PRIMARY KEY IDENTITY
-	,Valor		MONEY NOT NULL
-	,idVeiculo	INT FOREIGN KEY REFERENCES Veiculo (idVeiculo)
-	,idCliente	INT FOREIGN KEY REFERENCES Cliente	(idCliente)
-	,DataRetirada DATE NOT NULL
-	,DataEntrega DATE NOT NULL
+	idAluguel		INT PRIMARY KEY IDENTITY
+	,Valor			MONEY NOT NULL
+	,idVeiculo		INT FOREIGN KEY REFERENCES Veiculo (idVeiculo)
+	,idCliente		INT FOREIGN KEY REFERENCES Cliente	(idCliente)
+	,DataRetirada	DATE NOT NULL
+	,DataEntrega	DATE NOT NULL
 );
 
 ALTER TABLE Veiculo

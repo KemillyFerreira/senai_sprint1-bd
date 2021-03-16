@@ -1,3 +1,5 @@
+--DDL
+
 CREATE DATABASE Optus
 
 USE Optus;
@@ -11,10 +13,10 @@ CREATE TABLE Usuário
 	,Permissão	VARCHAR	(150)
 );
 
-CREATE TABLE ESTILO
+CREATE TABLE Estilo
 (
 	idEstilo	INT PRIMARY KEY IDENTITY
-	,NomE		VARCHAR (150)
+	,Nome		VARCHAR (150)
 );
 
 CREATE TABLE Artista

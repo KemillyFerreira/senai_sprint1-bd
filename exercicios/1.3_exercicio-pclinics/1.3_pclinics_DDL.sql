@@ -2,7 +2,7 @@
 
 CREATE DATABASE Clinica
 
-USE Clinica
+USE Clinica;
 
 CREATE TABLE Tipo
 (
