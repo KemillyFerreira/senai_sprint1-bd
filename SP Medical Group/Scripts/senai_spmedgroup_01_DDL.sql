@@ -6,21 +6,21 @@ CREATE DATABASE SpMedicalGroup
 USE SpMedicalGroup
 --determinando qual banco de dados será usado
 
-CREATE TABLE TipoUsuário
+CREATE TABLE TipoUsuario
 --criando a tabela TipoUsupario
 (
-	idTipoUsuário	INT PRIMARY KEY IDENTITY
-	,Tipo			VARCHAR (15) NOT NULL
+	idTipoUsuario	INT PRIMARY KEY IDENTITY
+	,TipoUsuario	VARCHAR (15) NOT NULL
 );
 
-CREATE TABLE Clínica
---criando a tabela Clínica
+CREATE TABLE Clinica
+--criando a tabela Clinica
 (
-	idClínica			INT PRIMARY KEY IDENTITY
-	,endereçoClínica	VARCHAR	(250) NOT NULL
-	,nomeClínica		VARCHAR	(200) NOT NULL
-	,razãoSocial		VARCHAR	(200) NOT NULL
+	idClinica			INT PRIMARY KEY IDENTITY
 	,cnpj				CHAR	(14)  NOT NULL
+	,razaoSocial		VARCHAR (20)  NOT NULL
+	,enderecoClinica	VARCHAR	(250) NOT NULL
+	,horario			VARCHAR (20)  NOT NULL
 );
 
 CREATE TABLE Especialidade
@@ -30,46 +30,46 @@ CREATE TABLE Especialidade
 	,nomeEspecialidade	VARCHAR (250) NOT NULL
 );
 
-CREATE TABLE Usuário
+CREATE TABLE Usuario
 --criando a tabela usuário
 (
-	idUsuário		INT PRIMARY KEY IDENTITY
-	,idTipoUsuário	INT FOREIGN KEY REFERENCES tipoUsuário(idTipoUsuário)
-	,nomeUsuário	VARCHAR (250) NOT NULL
+	idUsuario		INT PRIMARY KEY IDENTITY
+	,idTipoUsuario	INT FOREIGN KEY REFERENCES tipoUsuario(idTipoUsuario)
 	,email			VARCHAR (250) NOT NULL
 	,senha			VARCHAR (250) NOT NULL
 );
 
-CREATE TABLE Prontuário
+CREATE TABLE Paciente
 --criando a tabela Prontuário
 (
-	idProntuário	INT PRIMARY KEY IDENTITY
-	,idUsuário		INT FOREIGN KEY REFERENCES Usuário(idUsuário)
-	,nomePaciente	VARCHAR (250) NOT NULL
-	,rg				CHAR (9) NOT NULL
-	,cpf			CHAR (11) NOT NULL
-	,endereçoPaciente	VARCHAR (250) NOT NULL
+	idPaciente			INT PRIMARY KEY IDENTITY
+	,idUsuario			INT FOREIGN KEY REFERENCES Usuario(idUsuario)
+	,nomePaciente		VARCHAR (250) NOT NULL
+	,rg					CHAR (9) NOT NULL
+	,cpf				CHAR (11) NOT NULL
 	,dataNascimento		DATE NOT NULL
-	,telefonePaciente	VARCHAR (11) NOT NULL	
+	,telefonePaciente	VARCHAR (11)
+	,enderecoPaciente	VARCHAR (250) NOT NULL	
 );
 
-CREATE TABLE Médico
+CREATE TABLE Medico
 --criando a table Médico
 (
-	idMédico	INT PRIMARY KEY IDENTITY
-	,idClínica	INT FOREIGN KEY REFERENCES Clínica(idClínica)
-	,idUsuário	INT FOREIGN KEY REFERENCES Usuário(idUsuário)
+	idMedico			INT PRIMARY KEY IDENTITY
+	,idClinica			INT FOREIGN KEY REFERENCES Clinica(idClinica)
+	,idUsuario			INT FOREIGN KEY REFERENCES Usuario(idUsuario)
 	,idEspecialidade	INT FOREIGN KEY REFERENCES Especialidade(idEspecialidade)
-	,nomeMédico	VARCHAR (250) NOT NULL
-	,crm		VARCHAR (7) NOT NULL
+	,nomeMedico			VARCHAR (250) NOT NULL
+	,crm				VARCHAR (7) NOT NULL
 );
 
 CREATE TABLE Consulta
 --criando tabela Consulta
 (
-	idConsulta	INT PRIMARY KEY IDENTITY
-	,idMédico	INT FOREIGN KEY REFERENCES Médico(idMédico)
-	,idProntuário	INT FOREIGN KEY REFERENCES Prontuário(idProntuário)
+	idConsulta		INT PRIMARY KEY IDENTITY
+	,idPaciente		INT FOREIGN KEY REFERENCES Paciente (idPaciente)
+	,idMedico		INT FOREIGN KEY REFERENCES Medico(idMedico)
 	,dataConsulta	DATETIME NOT NULL
-	,situação		VARCHAR(100) NOT NULL	
+	,situacao		VARCHAR(100) NOT NULL
+	,descricao		VARCHAR (100)
 );
